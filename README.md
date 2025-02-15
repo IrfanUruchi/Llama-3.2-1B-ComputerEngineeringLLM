@@ -26,13 +26,16 @@ To load and use the model with the Hugging Face Transformers library, you can us
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model = AutoModelForCausalLM.from_pretrained("", device_map="auto")
-tokenizer = AutoTokenizer.from_pretrained("", use_fast=False)
+Irfan_LLM = "IrfanUruchi/Llama-3.2-1B-ComputerEngineeringLLM"
+model = AutoModelForCausalLM.from_pretrained(Irfan_LLM, device_map="auto")
+tokenizer = AutoTokenizer.from_pretrained(Irfan_LLM, use_fast=False)
 
 prompt = "Explain how computers process data."
 inputs = tokenizer(prompt, return_tensors="pt")
 outputs = model.generate(**inputs, max_new_tokens=100, temperature=0.8, top_k=50, top_p=0.92)
 print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+
+pip install transformers torch accelerate
 ```
 
 # License and Attribution:
