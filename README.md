@@ -23,7 +23,7 @@ The model was fine-tuned using LoRA (Low-Rank Adaptation) adapters
 
 To load and use the model with the git LFS, you can use the following code:
 
-First for installing in your local machine first make sure you have git LFS installed and then(tutorial is using terminal) its recommended to install directly the files one by one from the main repository if you dont have a git LFS subscription:
+First for installing in your local machine first make sure you have git LFS installed and then(tutorial is using terminal) its recommended to install directly the files (especially the model.safetensors as it won't install automatically) one by one from the main repository if you dont have a git LFS subscription:
 
 ```python
 pip install -U bitsandbytes
