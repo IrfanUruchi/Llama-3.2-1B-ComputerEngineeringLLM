@@ -23,19 +23,47 @@ The model was fine-tuned using LoRA (Low-Rank Adaptation) adapters
 
 To load and use the model with the Hugging Face Transformers library, you can use the following code:
 
+First for installing in your local machine first make sure you have git LFS installed and then(tutorial is using terminal) its recommended to install directly the file from this repository if you dont have a git LFS subscription:
+
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
+pip install -U bitsandbytes
+pip install transformers torch accelerate
 
-Irfan_LLM = "IrfanUruchi/Llama-3.2-1B-ComputerEngineeringLLM"
-model = AutoModelForCausalLM.from_pretrained(Irfan_LLM, device_map="auto")
-tokenizer = AutoTokenizer.from_pretrained(Irfan_LLM, use_fast=False)
+git clone https://github.com/IrfanUruchi/Llama-3.2-1B-ComputerEngineeringLLM.git
+cd Llama-3.2-1B-ComputerEngineeringLLM
 
+git lfs pull
+
+ls -lh
+
+git lfs pull
+```
+
+After that you have first to localize the model in your computer :
+
+```python
+
+local_path = "put here your actual path for model"
+
+ #example
+local_path = "./Llama-3.2-1B-ComputerEngineeringLLM"  # if your have the file in the current directory
+```
+
+Then after that you can use the model:
+
+```python
+
+local_path = "./Llama-3.2-1B-ComputerEngineeringLLM"  # if your have the file in the current directory
+model = AutoModelForCausalLM.from_pretrained("/content/Llama-3.2-1B-ComputerEngineeringLLM", device_map="auto", local_files_only=True)
+tokenizer = AutoTokenizer.from_pretrained("/content/Llama-3.2-1B-ComputerEngineeringLLM", use_fast=False, local_files_only=True)
+
+
+#The prompt
 prompt = "Explain how computers process data."
 inputs = tokenizer(prompt, return_tensors="pt")
+
 outputs = model.generate(**inputs, max_new_tokens=100, temperature=0.8, top_k=50, top_p=0.92)
 print(tokenizer.decode(outputs[0], skip_special_tokens=True))
-
-pip install transformers torch accelerate
 ```
 
 # License and Attribution:
