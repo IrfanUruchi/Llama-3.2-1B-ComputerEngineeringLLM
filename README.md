@@ -21,7 +21,7 @@ The model was fine-tuned using LoRA (Low-Rank Adaptation) adapters
 
 # Usage Instructions:
 
-To load and use the model with the Hugging Face Transformers library, you can use the following code:
+To load and use the model with the git LFS, you can use the following code:
 
 First for installing in your local machine first make sure you have git LFS installed and then(tutorial is using terminal) its recommended to install directly the file from this repository if you dont have a git LFS subscription:
 
