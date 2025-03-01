@@ -13,10 +13,7 @@ The model was fine-tuned using LoRA (Low-Rank Adaptation) adapters
 - **Number of Layers:** 16  
 - **Number of Attention Heads:** 32
 - **Quantization:** Loaded in 8-bit mode using BitsAndBytes  
-- **Tokenizer:** Uses a vocabulary of 128256 tokens  
-  - **BOS Token:** `<|begin_of_text|>`  
-  - **EOS Token:** `<|end_of_text|>`  
-  - **PAD Token:** `<|end_of_text|>`
+- **Tokenizer:** Uses a vocabulary of 128256 tokens 
 
 
 # Usage Instructions:
@@ -81,8 +78,7 @@ https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE
 
 # Known Limitations:
 
-The model is specialized for computer engineering topics and may not perform as well on unrelated subjects.
-Some outputs may exhibit occasional repetition or require further prompt engineering for optimal results.
+The model is specialized for computer engineering topics and may not work as well on unrelated subjects, some outputs may require further prompt engineering for optimal results. And occasional repetition or other artifacts may be present due to fine-tuning constraints.
 
 
 
