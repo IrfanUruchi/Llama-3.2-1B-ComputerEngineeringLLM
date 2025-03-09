@@ -13,7 +13,8 @@ The model was fine-tuned using LoRA (Low-Rank Adaptation) adapters
 - **Number of Layers:** 16  
 - **Number of Attention Heads:** 32
 - **Quantization:** Loaded in 8-bit mode using BitsAndBytes  
-- **Tokenizer:** Uses a vocabulary of 128256 tokens 
+- **Tokenizer:** Uses a vocabulary of 128256 tokens
+- **Fine-Tuning Method:** LoRA(Low-Rank Adaptation)
 
 
 # Usage Instructions:
