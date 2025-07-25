@@ -131,10 +131,10 @@ The model is specialized for computer engineering topics and may not work as wel
 If using for academic research, please cite:
 
 ```bibtex
-@misc{llama3.2-1b-eng-2024,
+@misc{llama3.2-1b-eng-2025,
   title = {Llama-3.2-1B-Computer-Engineering-LLM},
   author = {Irfanuruchi},
-  year = {2024},
+  year = {2025},
   publisher = {Hugging Face},
   url = {https://huggingface.co/Irfanuruchi/Llama-3.2-1B-Computer-Engineering-LLM},
 }
