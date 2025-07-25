@@ -35,50 +35,75 @@ The model was fine-tuned using LoRA (Low-Rank Adaptation) adapters
 
 # Usage Instructions:
 
-To load and use the model with the git LFS, you can use the following code:
-
-First for installing in your local machine first make sure you have git LFS installed and then(tutorial is using terminal) its recommended to install directly the files (especially the model.safetensors as it won't install automatically unless you have git lfs setup correctly on your GutHub page) one by one from the main repository if you dont have a git LFS subscription:
+### Option 1: From Hugging Face Hub (Recommended)
 
 ```python
-pip install -U bitsandbytes
-pip install transformers torch accelerate
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-git clone https://github.com/IrfanUruchi/Llama-3.2-1B-ComputerEngineeringLLM.git
-cd Llama-3.2-1B-ComputerEngineeringLLM
+model_id = "Irfanuruchi/Llama-3.2-1B-Computer-Engineering-LLM"
 
-git lfs pull
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    device_map="auto",
+    torch_dtype="auto", 
+    trust_remote_code=True
+)
 
-ls -lh
+tokenizer = AutoTokenizer.from_pretrained(
+    model_id,
+    use_fast=False  # Required for proper Llama tokenization
+)
 
-git lfs pull
-```
+prompt = "Explain the von Neumann architecture:"
+inputs = tokenizer(prompt, return_tensors="pt").to(model.device)  
 
-After that you have first to localize the model in your computer :
+outputs = model.generate(
+    **inputs,
+    max_new_tokens=200,  
+    temperature=0.7,     
+    top_p=0.9,          
+    do_sample=True,   
+    repetition_penalty=1.1  
+)
 
-```python
-
-local_path = "put here your actual path for model"
-
- #example
-local_path = "./Llama-3.2-1B-ComputerEngineeringLLM"  # if your have the file in the current directory
-```
-
-Then after that you can use the model:
-
-```python
-
-local_path = "./Llama-3.2-1B-ComputerEngineeringLLM"  # if your have the file in the current directory
-model = AutoModelForCausalLM.from_pretrained("/content/Llama-3.2-1B-ComputerEngineeringLLM", device_map="auto", local_files_only=True)
-tokenizer = AutoTokenizer.from_pretrained("/content/Llama-3.2-1B-ComputerEngineeringLLM", use_fast=False, local_files_only=True)
-
-
-#The prompt
-prompt = "Explain how computers process data."
-inputs = tokenizer(prompt, return_tensors="pt")
-
-outputs = model.generate(**inputs, max_new_tokens=100, temperature=0.8, top_k=50, top_p=0.92)
 print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 ```
+
+### Option 2: Local Installation (Git LFS Required)
+
+
+```python
+
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+# Replace with your local path
+model_path = "./Llama-3.2-1B-ComputerEngineeringLLM"  
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_path,
+    device_map="auto",
+    local_files_only=True
+)
+tokenizer = AutoTokenizer.from_pretrained(
+    model_path,
+    use_fast=False,  # Required for Llama tokenizer
+    local_files_only=True
+)
+```
+
+*Recomended Config*
+
+```python
+outputs = model.generate(
+    **inputs,
+    max_new_tokens=200,
+    temperature=0.7, 
+    top_p=0.9,     
+    do_sample=True,
+    repetition_penalty=1.1  
+)
+```
+
 
 # License and Attribution:
 
